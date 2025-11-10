@@ -1,0 +1,6 @@
+id=hail_privapp
+name=Hail Privileged App
+version=1.0
+versionCode=1
+author=Sufyan
+description=Installs Hail as a privileged system app for faster and cleaner performance.

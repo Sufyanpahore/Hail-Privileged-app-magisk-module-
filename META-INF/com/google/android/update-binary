@@ -1,0 +1,33 @@
+#!/sbin/sh
+# Simple Magisk module installer script for Hail Privileged System App
+
+ui_print "******************************"
+ui_print " Installing Hail Privileged "
+ui_print "******************************"
+
+# Detect system root location
+if [ -d /system_root/system ]; then
+  SYS="/system_root/system"
+else
+  SYS="/system"
+fi
+
+# Target install paths
+TARGET_PRIV="$SYS/priv-app/Hail"
+TARGET_PERM="$SYS/etc/permissions"
+
+# Create directories
+mkdir -p $TARGET_PRIV
+mkdir -p $TARGET_PERM
+
+# Copy files from module
+cp -f $TMPDIR/system/priv-app/Hail/Hail.apk $TARGET_PRIV/
+cp -f $TMPDIR/system/etc/permissions/privapp-permissions_com.aistra.hail.xml $TARGET_PERM/
+
+# Set permissions
+chmod 0644 $TARGET_PRIV/Hail.apk
+chmod 0644 $TARGET_PERM/privapp-permissions_com.aistra.hail.xml
+
+ui_print "✔️ Installed successfully."
+ui_print "Reboot your device to activate Hail as a system app."
+exit 0
